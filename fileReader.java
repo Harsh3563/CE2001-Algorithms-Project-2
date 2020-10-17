@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.Scanner;
 
 public class fileReader {
-	public static void readGraphFromFile(String fileName) throws FileNotFoundException{
+	public static void readGraphFromFile(String fileName, Graph graph) throws FileNotFoundException{
 		int numOfNodes, fromNode, toNode;
 		File nodeFile = new File(fileName);
 		Scanner sc = new Scanner(nodeFile);
@@ -19,7 +19,7 @@ public class fileReader {
 		for(int i = 0; i < 2; i++) {
 			sc.nextLine(); //Skip next 2 lines, unnecessary info
 		}
-		Graph graph = new Graph(numOfNodes*10);
+		graph = new Graph(numOfNodes*10);
 		while(sc.hasNextLine()) {
 			fromNode = sc.nextInt();
 			toNode = sc.nextInt();
@@ -32,8 +32,9 @@ public class fileReader {
 	}
 	
 	public static void main(String[] args) {
+		Graph g;
 		try {
-		readGraphFromFile("roadNet-PA.txt");
+		readGraphFromFile("roadNet-PA.txt", g);
 		}
 		catch(Exception FileNotFoundException) {
 			System.out.println("File not found!");
