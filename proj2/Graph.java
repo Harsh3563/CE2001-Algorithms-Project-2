@@ -10,7 +10,7 @@ public class Graph {
 	public Graph(int numOfNodes) {
 		this.n = numOfNodes;
 		adjList = new LinkedList[n];
-		for(int i= 0; i < n; ++i) {
+		for(int i= 0; i < n; i++) {
 			adjList[i] = new LinkedList();
 		}
 	}

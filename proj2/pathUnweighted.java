@@ -45,7 +45,8 @@ public class pathUnweighted {
                     	if (children[i] == h[j]) 
                     		return dist; 
                     }
-                } 
+                }
+                
             } 
             dist++;
         }
@@ -63,7 +64,7 @@ public class pathUnweighted {
 		int[] distances = new int[nodes];
 		for (j = 0; j<h.length; j++) {
         	if (s == h[j]) {
-        		 distances[count] = dist;
+        		distances[count] = dist;
         		count++;
         	}
         }
