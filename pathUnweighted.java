@@ -20,17 +20,17 @@ public class pathUnweighted {
 		
 		while (!L.isEmpty()) { 
             int u = L.remove(); 
-            for (int i = 0; i < g.get(u).size(); i++) { 
-                if (visited[g.get(u).get(i)] == false) { 
-                    visited[g.get(u).get(i)] = true; 
-                    dist[g.get(u).get(i)] = dist[u] + 1; 
+            for (int i = 0; i < g.findDegree(u); i++) { 
+                if (visited[g.adjMatrix[u][i]] == false) { 
+                    visited[g.adjMatrix[u][i]] = true; 
+                    dist[g.adjMatrix[u][i]] = dist[u] + 1; 
                     // pred[g.get(u).get(i)] = u; 
-                    L.add(g.get(u).get(i)); 
+                    L.add(g.adjMatrix[u][i]); 
   
                     // stopping condition (when we find 
                     // our destination) 
                     for (i = 0; i<h.length; i++)
-                    	if (g.get(u).get(i) == h[i]) 
+                    	if (g.adjMatrix[u][i] == h[i]) 
                     		return dist[u]; 
                 } 
             } 
