@@ -4,7 +4,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 public class TxtFiletoList
 {
-   public int[] Hospitals() 
+   public static int[] Hospitals() 
    {
        Scanner sc = new Scanner(new File("File2.txt"));
        ArrayList<String> list = new ArrayList<String>();
