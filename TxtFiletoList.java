@@ -4,14 +4,14 @@ import java.util.Scanner;
 import java.util.ArrayList;
 public class TxtFiletoList
 {
-   public static void main(String[] args) throws IOException
+   public int[] Hospitals(String[] args) 
    {
-       Scanner s = new Scanner(new File("File2.txt"));
+       Scanner sc = new Scanner(new File("File2.txt"));
        ArrayList<String> list = new ArrayList<String>();
-       while (s.hasNext()){
-            list.add(s.next());
+       while (sc.hasNext()){
+            list.add(sc.next());
        }
-       s.close();
+       sc.close();
        String[] arr = new String[list.size()];
        arr = list.toArray(arr);
        int[] arrFinal = new int[arr.length-2];
@@ -25,5 +25,6 @@ public class TxtFiletoList
        {
           System.out.print(arrFinal[i] + " ");
        }
+      return arrFinal;
    }
 }
