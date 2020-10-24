@@ -5,35 +5,45 @@ import java.util.Queue;
 
 
 public class pathUnweighted {
-	int BFS(graph g, int s, int[] h, int nodes) {
+	int BFS(Graph g, int s, int[] h, int nodes) {
 		LinkedList<Integer> L = new LinkedList<Integer>();
 		L.add(s);
 		boolean visited[] = new boolean[nodes];
-		int dist[] = new int[nodes];
+		int dist = 0;
 		visited[s] = true;
-		dist[s] = 0;
+		//int dist[] = new int[nodes];
+		//dist[s] = 0;
 		
 		for (int i = 0; i < nodes; i++) {
 			visited[i] = false;
-			dist[i] = Integer.MAX_VALUE;
+			//dist[i] = Integer.MAX_VALUE;
 		}
 		
+		int u;
+		int[] children;
+		int j;
+		
 		while (!L.isEmpty()) { 
-            int u = L.remove(); 
+            u = L.remove(); 
+            children = g.findChild(u);
             for (int i = 0; i < g.findDegree(u); i++) { 
-                if (visited[g.adjMatrix[u][i]] == false) { 
-                    visited[g.adjMatrix[u][i]] = true; 
-                    dist[g.adjMatrix[u][i]] = dist[u] + 1; 
-                    // pred[g.get(u).get(i)] = u; 
-                    L.add(g.adjMatrix[u][i]); 
+          
+                if (visited[children[i]] == false) { 
+                    visited[children[i]] = true; 
+                    
+                    //dist[children[i]] = dist[u] + 1; 
+                    //pred[g.get(u).get(i)] = u; 
+                    L.add(children[i]); 
   
                     // stopping condition (when we find 
                     // our destination) 
-                    for (i = 0; i<h.length; i++)
-                    	if (g.adjMatrix[u][i] == h[i]) 
-                    		return dist[u]; 
+                    for (j = 0; j<h.length; j++) {
+                    	if (children[i] == h[j]) 
+                    		return dist; 
+                    }
                 } 
             } 
+            dist++;
         } 
 	}
 }
