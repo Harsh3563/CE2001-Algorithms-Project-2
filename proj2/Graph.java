@@ -35,7 +35,6 @@ public class Graph {
 		int[] childs = new int[size];
 		for (int i = 0; i < size; i++) {
 			childs[i] = adjList[node].get(i);
-			i++;
 		}
 		return childs;
 
