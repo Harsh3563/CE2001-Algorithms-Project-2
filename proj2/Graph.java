@@ -1,17 +1,17 @@
 package proj2;
 
+import java.util.LinkedList;
 
 public class Graph {
+	
 	private int n;
-	private int[][] adjMatrix;
+	private LinkedList<Integer> adjList[];
 	
 	public Graph(int numOfNodes) {
 		this.n = numOfNodes;
-		adjMatrix = new int[n][n];
-		for(int i = 0; i<n; i++) {
-			for(int j = 0; j<n; j++) {
-				adjMatrix[i][j] = 0;
-			}
+		adjList = new LinkedList[n];
+		for(int i= 0; i < n; ++i) {
+			adjList[i] = new LinkedList();
 		}
 	}
 	
@@ -20,26 +20,24 @@ public class Graph {
 	}
 	
 	public void addEdge(int fromNode, int toNode) {
-		adjMatrix[fromNode][toNode] = 1;
+		adjList[fromNode].add(toNode);
+		adjList[toNode].add(fromNode);
 	}
+
 	
-	public int findDegree(int node) {
-		int degree = 0;
-		for(int i = 0; i < n; i++) {
-			if(adjMatrix[node][i] == 1) degree++;
-		}
-		return degree;
+	public int findDegree(int nodeID) {
+
+		return adjList[nodeID].size();
 	}
 	
 	public int[] findChild(int node) {
-		int[] childs = new int[n];
-		int j = 0;
-		for (int i = 0; i < n; i++) {
-			if(adjMatrix[node][i] == 1) {
-				childs[j] = i;
-				j++;
-			}
+		int size = findDegree(node);
+		int[] childs = new int[size];
+		for (int i = 0; i < size; i++) {
+			childs[i] = adjList[node].get(i);
+			i++;
 		}
 		return childs;
+
 	}
 }

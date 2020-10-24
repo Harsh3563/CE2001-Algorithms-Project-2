@@ -8,16 +8,27 @@ public class BFSApp {
 		// TODO Auto-generated method stub
 		int choice, sourceNode, dist, k;
 		int[] h = null;
-		Graph g = null;
+		//Graph g = null;
+		Graph g = new Graph(10);
 		int[] distances;
 		boolean repeat = true;
 		
-		try {
+		/*try {
 			g = fileReader.readGraphFromFile("roadNet-PA.txt");
 			}
 		catch(Exception FileNotFoundException) {
 				System.out.println("File not found!");
-			}
+			}*/
+		g.addEdge(0, 1);
+		g.addEdge(0, 2);
+		g.addEdge(1, 3);
+		g.addEdge(1, 4);
+		g.addEdge(2, 5);
+		g.addEdge(2, 6);
+		g.addEdge(3, 7);
+		g.addEdge(3, 8);
+		g.addEdge(4, 9);
+		
 		
 		try {
 			h = TxtFiletoList.Hospitals();
