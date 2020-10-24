@@ -21,7 +21,7 @@ public class Graph {
 	
 	public void addEdge(int fromNode, int toNode) {
 		adjList[fromNode].add(toNode);
-		adjList[toNode].add(fromNode);
+		
 	}
 
 	

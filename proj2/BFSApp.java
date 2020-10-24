@@ -29,6 +29,16 @@ public class BFSApp {
 		g.addEdge(3, 8);
 		g.addEdge(4, 9);
 		
+		g.addEdge(1, 0);
+		g.addEdge(2, 0);
+		g.addEdge(3, 1);
+		g.addEdge(4, 1);
+		g.addEdge(5, 2);
+		g.addEdge(6, 2);
+		g.addEdge(7, 3);
+		g.addEdge(8, 3);
+		g.addEdge(9, 4);
+		
 		
 		try {
 			h = TxtFiletoList.Hospitals();

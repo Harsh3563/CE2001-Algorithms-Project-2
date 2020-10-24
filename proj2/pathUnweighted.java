@@ -17,7 +17,6 @@ public class pathUnweighted {
         }
 		dist++;
 		
-		visited[s] = true;
 		//int dist[] = new int[nodes];
 		//dist[s] = 0;
 		
@@ -25,7 +24,7 @@ public class pathUnweighted {
 			visited[i] = false;
 			//dist[i] = Integer.MAX_VALUE;
 		}
-		
+		visited[s] = true;
 		
 		
 		while (!L.isEmpty()) { 
@@ -69,7 +68,6 @@ public class pathUnweighted {
         	}
         }
 		dist++;
-		visited[s] = true;
 		//int dist[] = new int[nodes];
 		//dist[s] = 0;
 		
@@ -78,6 +76,7 @@ public class pathUnweighted {
 			//dist[i] = Integer.MAX_VALUE;
 		}
 		
+		visited[s] = true;
 		
 		
 		while (!L.isEmpty()) { 
