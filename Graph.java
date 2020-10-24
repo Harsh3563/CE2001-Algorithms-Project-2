@@ -26,4 +26,16 @@ public class Graph {
 		}
 		return degree;
 	}
+	
+	public int[] findChild(int node) {
+		int[] childs = new int[n];
+		int j = 0;
+		for (int i = 0; i < n; i++) {
+			if(adjMatrix[node][i] == 1) {
+				childs[j] = i;
+				j++;
+			}
+		}
+		return childs;
+	}
 }
