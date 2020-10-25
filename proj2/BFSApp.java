@@ -13,7 +13,7 @@ public class BFSApp {
 		//Graph g = new Graph(10);
 		
 		try {
-			g = fileReader.readGraphFromFile("test.txt");
+			g = fileReader.readGraphFromFile("Case1Nodes.txt"); //Change Node file name here
 			}
 		catch(Exception FileNotFoundException) {
 				System.out.println("File not found!");
@@ -32,7 +32,7 @@ public class BFSApp {
 		*/
 		
 		try {
-			h = TxtFiletoList.Hospitals();
+			h = TxtFiletoList.Hospitals("Case1Hosp.txt"); //Change Hospital file name here
 		}
 		catch(Exception FileNotFoundException) {
 			System.out.println("Hospital File not found");

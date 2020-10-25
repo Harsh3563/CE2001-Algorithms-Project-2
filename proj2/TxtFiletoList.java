@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 public class TxtFiletoList
 {
-   public static int[] Hospitals() throws FileNotFoundException
+   public static int[] Hospitals(String file) throws FileNotFoundException
    {
-       Scanner sc = new Scanner(new File("File2.txt"));
+       Scanner sc = new Scanner(new File(file));
        ArrayList<String> list = new ArrayList<String>();
        while (sc.hasNext()){
             list.add(sc.next());
