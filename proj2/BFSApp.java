@@ -29,16 +29,6 @@ public class BFSApp {
 		g.addEdge(3, 8);
 		g.addEdge(4, 9);
 		
-		g.addEdge(1, 0);
-		g.addEdge(2, 0);
-		g.addEdge(3, 1);
-		g.addEdge(4, 1);
-		g.addEdge(5, 2);
-		g.addEdge(6, 2);
-		g.addEdge(7, 3);
-		g.addEdge(8, 3);
-		g.addEdge(9, 4);
-		
 		
 		try {
 			h = TxtFiletoList.Hospitals();
@@ -61,6 +51,7 @@ public class BFSApp {
 					+ "[3] Top-k Hostpitals\n"
 					+ "[4] Quit");
 			choice = sc.nextInt();
+			if(choice == 4) break;
 			System.out.print("Enter source node ID:");
 			sourceNode = sc.nextInt();
 			switch(choice) {
@@ -75,9 +66,6 @@ public class BFSApp {
 				System.out.println("Enter desired k value: ");
 				k = sc.nextInt();
 				distances = pathUnweighted.BFStopk(g, sourceNode, h, g.getSize(), k);
-				break;
-			case 4:
-				repeat = false;
 				break;
 			default:
 				System.out.println("Not a valid option");

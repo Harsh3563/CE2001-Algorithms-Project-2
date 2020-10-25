@@ -8,7 +8,7 @@ public class pathUnweighted {
 		L.add(s);
 		boolean visited[] = new boolean[nodes];
 		int dist = 0;
-		int u;
+		int u, count = 0;
 		int[] children;
 		int j;
 		for (j = 0; j<h.length; j++) {
@@ -30,6 +30,7 @@ public class pathUnweighted {
 		while (!L.isEmpty()) { 
             u = L.remove(); 
             children = g.findChild(u);
+            count = 0;
             for (int i = 0; i < g.findDegree(u); i++) { 
           
                 if (visited[children[i]] == false) { 
@@ -43,11 +44,16 @@ public class pathUnweighted {
                     // our destination) 
                     for (j = 0; j<h.length; j++) {
                     	if (children[i] == h[j]) 
-                    		return dist; 
+                    		return dist;
                     }
                 }
+                else {
+                	count++;
+                }
                 
-            } 
+                
+            }
+            if(children.length > count)
             dist++;
         }
 		return -1;
@@ -61,6 +67,7 @@ public class pathUnweighted {
 		int u;
 		int[] children;
 		int j, count = 0;
+		int visitCount;
 		int[] distances = new int[nodes];
 		for (j = 0; j<h.length; j++) {
         	if (s == h[j]) {
@@ -81,7 +88,8 @@ public class pathUnweighted {
 		
 		
 		while (!L.isEmpty()) { 
-            u = L.remove(); 
+            u = L.remove();
+            visitCount = 0;
             if(g.findDegree(u) != 0) {
             	children = g.findChild(u);
 	            for (int i = 0; i < g.findDegree(u); i++) { 
@@ -108,8 +116,10 @@ public class pathUnweighted {
 	                    			return distances;
 	                    		}
 	                    }
-	                } 
+	                }
+	                else visitCount++;
 	            } 
+	            if(children.length > visitCount)
 	            dist++;
             }
         }
