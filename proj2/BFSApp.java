@@ -13,7 +13,7 @@ public class BFSApp {
 		//Graph g = new Graph(10);
 		
 		try {
-			g = fileReader.readGraphFromFile("Case1Nodes.txt"); //Change Node file name here
+			g = fileReader.readGraphFromFile("test.txt");
 			}
 		catch(Exception FileNotFoundException) {
 				System.out.println("File not found!");
@@ -32,7 +32,7 @@ public class BFSApp {
 		*/
 		
 		try {
-			h = TxtFiletoList.Hospitals("Case1Hosp.txt"); //Change Hospital file name here
+			h = TxtFiletoList.Hospitals();
 		}
 		catch(Exception FileNotFoundException) {
 			System.out.println("Hospital File not found");
@@ -54,11 +54,7 @@ public class BFSApp {
 			sourceNode = sc.nextInt();
 			switch(choice) {
 			case 1:
-				dist = pathUnweighted.BFS(g, sourceNode, h, g.getSize());
-				if(dist == -1) {
-					System.out.println("Source node is not connected to any hospitals");
-				}
-				else
+				dist = BFSUndirected.BFS(g, sourceNode, h, g.getSize());
 				System.out.println("Distance to nearest hospital is:" + dist);
 				break;
 			case 2:
