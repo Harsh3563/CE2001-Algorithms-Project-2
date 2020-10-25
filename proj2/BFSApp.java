@@ -13,7 +13,7 @@ public class BFSApp {
 		//Graph g = new Graph(10);
 		
 		try {
-			g = fileReader.readGraphFromFile("test.txt");
+			g = fileReader.readGraphFromFile("Case1Nodes.txt"); //Change Node file name here
 			}
 		catch(Exception FileNotFoundException) {
 				System.out.println("File not found!");
@@ -32,7 +32,7 @@ public class BFSApp {
 		*/
 		
 		try {
-			h = TxtFiletoList.Hospitals();
+			h = TxtFiletoList.Hospitals("Case1Hosp.txt"); //Change Hospital file name here
 		}
 		catch(Exception FileNotFoundException) {
 			System.out.println("Hospital File not found");
@@ -54,16 +54,15 @@ public class BFSApp {
 			sourceNode = sc.nextInt();
 			switch(choice) {
 			case 1:
-				dist = BFSUndirected.BFS(g, sourceNode, h, g.getSize());
-				System.out.println("Distance to nearest hospital is:" + dist);
+				ShortestDist.BFStopk(g, sourceNode, h, g.getSize(), 1);
 				break;
 			case 2:
-				pathUnweighted.BFStopk(g, sourceNode, h, g.getSize(), 2);
+				ShortestDist.BFStopk(g, sourceNode, h, g.getSize(), 2);
 				break;
 			case 3:
 				System.out.println("Enter desired k value: ");
 				k = sc.nextInt();
-				pathUnweighted.BFStopk(g, sourceNode, h, g.getSize(), k);
+				ShortestDist.BFStopk(g, sourceNode, h, g.getSize(), k);
 				break;
 			default:
 				System.out.println("Not a valid option");
