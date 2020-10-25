@@ -8,17 +8,18 @@ public class BFSApp {
 		// TODO Auto-generated method stub
 		int choice, sourceNode, dist, k;
 		int[] h = null;
-		//Graph g = null;
-		Graph g = new Graph(10);
-		int[] distances;
-		boolean repeat = true;
+		Graph g = null;
+		//Graph g = new Graph(10);
 		
-		/*try {
-			g = fileReader.readGraphFromFile("roadNet-PA.txt");
+		
+		
+		try {
+			g = fileReader.readGraphFromFile("test.txt");
 			}
 		catch(Exception FileNotFoundException) {
 				System.out.println("File not found!");
-			}*/
+			}
+		/*
 		g.addEdge(0, 1);
 		g.addEdge(0, 2);
 		g.addEdge(1, 3);
@@ -28,6 +29,7 @@ public class BFSApp {
 		g.addEdge(3, 7);
 		g.addEdge(3, 8);
 		g.addEdge(4, 9);
+		*/
 		
 		
 		try {
@@ -44,7 +46,7 @@ public class BFSApp {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		while(repeat) {
+		while(true) {
 			System.out.println("Select which algorithm to find:\n"
 					+ "[1] Nearest Hospital\n"
 					+ "[2] Top 2 Hospitals\n"
@@ -60,12 +62,12 @@ public class BFSApp {
 				System.out.println("Distance to nearest hospital is:" + dist);
 				break;
 			case 2:
-				distances = pathUnweighted.BFStopk(g, sourceNode, h, g.getSize(), 2);
+				pathUnweighted.BFStopk(g, sourceNode, h, g.getSize(), 2);
 				break;
 			case 3:
 				System.out.println("Enter desired k value: ");
 				k = sc.nextInt();
-				distances = pathUnweighted.BFStopk(g, sourceNode, h, g.getSize(), k);
+				pathUnweighted.BFStopk(g, sourceNode, h, g.getSize(), k);
 				break;
 			default:
 				System.out.println("Not a valid option");
