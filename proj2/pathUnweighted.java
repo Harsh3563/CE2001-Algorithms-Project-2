@@ -90,38 +90,37 @@ public class pathUnweighted {
 		while (!L.isEmpty()) { 
             u = L.remove();
             visitCount = 0;
-            if(g.findDegree(u) != 0) {
-            	children = g.findChild(u);
-	            for (int i = 0; i < g.findDegree(u); i++) { 
-	          
-	                if (visited[children[i]] == false) { 
-	                    visited[children[i]] = true; 
-	                    
-	                    //dist[children[i]] = dist[u] + 1; 
-	                    //pred[g.get(u).get(i)] = u; 
-	                    L.add(children[i]); 
-	  
-	                    // stopping condition (when we find 
-	                    // our destination) 
-	                    for (j = 0; j<h.length; j++) {
-	                    	if (children[i] == h[j]) 
-	                    		distances[count] = dist;
-	                    		count++;
-	                    		if(count == k) {
-	                    			System.out.print("Distances are: ");
-	                    			for(int z = 0; z < count; z++) {
-	                    				System.out.print(distances[z]+ ", ");
-	                    			}
-	                    			System.out.println();
-	                    			return distances;
-	                    		}
-	                    }
-	                }
-	                else visitCount++;
-	            } 
-	            if(children.length > visitCount)
-	            dist++;
-            }
+            children = g.findChild(u);
+	    for (int i = 0; i < g.findDegree(u); i++) { 
+
+		if (visited[children[i]] == false) { 
+		    visited[children[i]] = true; 
+
+		    //dist[children[i]] = dist[u] + 1; 
+		    //pred[g.get(u).get(i)] = u; 
+		    L.add(children[i]); 
+
+		    // stopping condition (when we find 
+		    // our destination) 
+		    for (j = 0; j<h.length; j++) {
+				if (children[i] == h[j]){ 
+					distances[count] = dist;
+					count++;
+					if(count == k) {
+						System.out.print("Distances are: ");
+						for(int z = 0; z < count; z++) {
+							System.out.print(distances[z]+ ", ");
+						}
+						System.out.println();
+						return distances;
+					}
+			    }
+			}
+		}
+		else visitCount++;
+	    } 
+	    if(children.length > visitCount)
+	    	dist++;
         }
 		return distances;
 	}

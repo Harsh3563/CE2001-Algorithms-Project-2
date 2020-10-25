@@ -9,15 +9,15 @@ public class BFSApp {
 		int choice, sourceNode, dist, k;
 		int[] h = null;
 		Graph g = null;
+		
 		//Graph g = new Graph(10);
-		
-		
 		
 		try {
 			g = fileReader.readGraphFromFile("test.txt");
 			}
 		catch(Exception FileNotFoundException) {
 				System.out.println("File not found!");
+				System.exit(0);
 			}
 		/*
 		g.addEdge(0, 1);
@@ -31,18 +31,14 @@ public class BFSApp {
 		g.addEdge(4, 9);
 		*/
 		
-		
 		try {
 			h = TxtFiletoList.Hospitals();
 		}
 		catch(Exception FileNotFoundException) {
 			System.out.println("Hospital File not found");
-		}
-		
-		if((g == null)||(h == null)){
-			System.out.println("Error with files");
 			System.exit(0);
 		}
+		
 		
 		Scanner sc = new Scanner(System.in);
 		
@@ -75,6 +71,7 @@ public class BFSApp {
 			}
 		}
 		System.out.println("Program completed!");
+		sc.close();
 	}
 
 }
