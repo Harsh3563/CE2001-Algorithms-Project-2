@@ -55,6 +55,10 @@ public class BFSApp {
 			switch(choice) {
 			case 1:
 				dist = pathUnweighted.BFS(g, sourceNode, h, g.getSize());
+				if(dist == -1) {
+					System.out.println("Source node is not connected to any hospitals");
+				}
+				else
 				System.out.println("Distance to nearest hospital is:" + dist);
 				break;
 			case 2:

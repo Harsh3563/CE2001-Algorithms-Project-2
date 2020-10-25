@@ -59,7 +59,7 @@ public class pathUnweighted {
 		return -1;
 	}
 	
-	public static int[] BFStopk(Graph g, int s, int[] h, int nodes, int k) {
+	public static void BFStopk(Graph g, int s, int[] h, int nodes, int k) {
 		LinkedList<Integer> L = new LinkedList<Integer>();
 		L.add(s);
 		boolean visited[] = new boolean[nodes];
@@ -68,7 +68,7 @@ public class pathUnweighted {
 		int[] children;
 		int j, count = 0;
 		int visitCount;
-		int[] distances = new int[nodes];
+		int[] distances = new int[k+1];
 		for (j = 0; j<h.length; j++) {
         	if (s == h[j]) {
         		distances[count] = dist;
@@ -76,8 +76,6 @@ public class pathUnweighted {
         	}
         }
 		dist++;
-		//int dist[] = new int[nodes];
-		//dist[s] = 0;
 		
 		for (int i = 0; i < nodes; i++) {
 			visited[i] = false;
@@ -85,7 +83,6 @@ public class pathUnweighted {
 		}
 		
 		visited[s] = true;
-		
 		
 		while (!L.isEmpty()) { 
             u = L.remove();
@@ -95,9 +92,7 @@ public class pathUnweighted {
 
 		if (visited[children[i]] == false) { 
 		    visited[children[i]] = true; 
-
-		    //dist[children[i]] = dist[u] + 1; 
-		    //pred[g.get(u).get(i)] = u; 
+ 
 		    L.add(children[i]); 
 
 		    // stopping condition (when we find 
@@ -112,7 +107,7 @@ public class pathUnweighted {
 							System.out.print(distances[z]+ ", ");
 						}
 						System.out.println();
-						return distances;
+						return;
 					}
 			    }
 			}
@@ -122,7 +117,9 @@ public class pathUnweighted {
 	    if(children.length > visitCount)
 	    	dist++;
         }
-		return distances;
+		if(count == 0) {
+			System.out.println("No hospitals connected to source node");
+		}
 	}
 	
 }
