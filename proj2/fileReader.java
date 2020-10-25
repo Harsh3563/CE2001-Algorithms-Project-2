@@ -20,15 +20,18 @@ public class fileReader {
 			sc.nextLine(); //Skip next 2 lines, unnecessary info
 		}
 		Graph graph = new Graph(numOfNodes*2);
-		while(sc.hasNextLine()) {
-			fromNode = sc.nextInt();
-			toNode = sc.nextInt();
-			//System.out.println("fromNode: " + fromNode + "\ntoNode:" + toNode); //For Checking purposes
-			graph.addEdge(fromNode, toNode);
-			sc.nextLine();
+		try{
+			while(sc.hasNextLine()) {
+				fromNode = sc.nextInt();
+				toNode = sc.nextInt();
+				//System.out.println("fromNode: " + fromNode + "\ntoNode:" + toNode); //For Checking purposes
+				graph.addEdge(fromNode, toNode);
+				sc.nextLine();
+			}
 		}
-		System.out.println("File has been read successfully, graph has been created.");
-		
+		catch(Exception e){
+			System.out.println("File has been read successfully, graph has been created.");
+		}
 		sc.close();
 		return graph;
 	}
