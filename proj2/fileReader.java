@@ -35,7 +35,7 @@ public class fileReader {
 		sc.close();
 		return graph;
 	}
-	
+	/*
 	public static void main(String[] args) {
 		
 		try {
@@ -45,4 +45,5 @@ public class fileReader {
 			System.out.println("File not found!");
 		}
 	}
+	*/
 }
