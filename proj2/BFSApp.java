@@ -12,8 +12,10 @@ public class BFSApp {
 		boolean demo = true;
 		long startTime;
 		
+		//For testing purposes
 		//Graph g = new Graph(10);
 		
+		//Reading node file
 		try {
 			g = fileReader.readGraphFromFile("roadNet-PA.txt"); //Change Node file name here
 			}
@@ -21,6 +23,7 @@ public class BFSApp {
 				System.out.println("File not found!");
 				System.exit(0);
 			}
+		//Testing purposes to generate test graph
 		/*
 		g.addEdge(0, 1);
 		g.addEdge(0, 2);
@@ -33,6 +36,7 @@ public class BFSApp {
 		g.addEdge(4, 9);
 		*/
 		
+		//reading hospital file
 		try {
 			h = TxtFiletoList.Hospitals("Case2Hosp.txt"); //Change Hospital file name here
 		}
