@@ -19,7 +19,7 @@ public class fileReader {
 		for(int i = 0; i < 2; i++) {
 			sc.nextLine(); //Skip next 2 lines, unnecessary info
 		}
-		Graph graph = new Graph(numOfNodes*2);
+		Graph graph = new Graph(numOfNodes*2); //Due to dirty data, nodeID sometimes is bigger than number of nodes
 		try {
 			while(sc.hasNextLine()) {
 				fromNode = sc.nextInt();
@@ -37,13 +37,4 @@ public class fileReader {
 		
 	}
 	
-	/*public static void main(String[] args) {
-		
-		try {
-		Graph g = readGraphFromFile("roadNet-PA.txt");
-		}
-		catch(Exception FileNotFoundException) {
-			System.out.println("File not found!");
-		}
-	}*/
 }
