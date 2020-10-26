@@ -23,6 +23,7 @@ public class TxtFiletoList
            arrFinal[k] = Integer.parseInt(arr[i]);
            k++;
        }
+       
       return arrFinal;
    }
 }

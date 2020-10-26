@@ -9,6 +9,7 @@ public class BFSApp {
 		int choice, sourceNode, dist, k;
 		int[] h = null;
 		Graph g = null;
+		boolean demo = true;
 		
 		//Graph g = new Graph(10);
 		
@@ -42,7 +43,8 @@ public class BFSApp {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		while(true) {
+		
+		do {
 			System.out.println("Select which algorithm to find:\n"
 					+ "[1] Nearest Hospital\n"
 					+ "[2] Top 2 Hospitals\n"
@@ -54,21 +56,36 @@ public class BFSApp {
 			sourceNode = sc.nextInt();
 			switch(choice) {
 			case 1:
-				ShortestDist.BFStopk(g, sourceNode, h, g.getSize(), 1);
+				try {
+					ShortestDist.BFStopk(g, sourceNode, h, g.getSize(), 1);
+				}
+				catch(Exception e) {
+					System.out.println("An error has occurred");
+				}
 				break;
 			case 2:
+				try {
 				ShortestDist.BFStopk(g, sourceNode, h, g.getSize(), 2);
+				}
+				catch(Exception e) {
+					System.out.println("An error has occurred");
+				}
 				break;
 			case 3:
 				System.out.println("Enter desired k value: ");
 				k = sc.nextInt();
+				try {
 				ShortestDist.BFStopk(g, sourceNode, h, g.getSize(), k);
+				}
+				catch(Exception e) {
+					System.out.println("An error has occurred");
+				}
 				break;
 			default:
 				System.out.println("Not a valid option");
 				break;
 			}
-		}
+		}while(demo);
 		System.out.println("Program completed!");
 		sc.close();
 	}
