@@ -34,7 +34,7 @@ public class ShortestDist {
 			path[o] = new LinkedList();
 		}
 		
-		for (int i = 0; i < nodes; i++) {
+		for (int i = 0; i < nodes; i++) { // Total no. of iterations = |nodes| , one of the 2 main components of total time complexity of this BFS algorithm 
 			visited[i] = false;
 			pre[i] = -1;
 		}
@@ -45,7 +45,7 @@ public class ShortestDist {
             u = L.remove();
             children = g.findChild(u);
             
-		    for (int i = 0; i < g.findDegree(u); i++) { 
+		    for (int i = 0; i < g.findDegree(u); i++) { // Total no. of iterations = |edges| , the 2nd main component of total time complexity of this BFS algorithm 
 	
 				if (visited[children[i]] == false) { 
 				    visited[children[i]] = true; 
