@@ -75,5 +75,13 @@ public class ShortestDist {
 		if(count == 0) {
 			System.out.println("No hospitals connected to source node");
 		}
+		else {
+			System.out.println("Only " + count + " hospitals were found");
+			System.out.println("Distances are: ");
+			for(int z = 0; z < count; z++) {
+				System.out.print(hosp[z]+ " ");
+			}
+			System.out.println();
+		}
 	}
 }
