@@ -30,6 +30,10 @@ public class ShortestDist {
         	}
         }
 		//dist++;
+		LinkedList<Integer> path[] = new LinkedList[k];
+		for (int o=0; o<k; o++) {
+			path[o] = new LinkedList();
+		}
 		
 		for (int i = 0; i < nodes; i++) {
 			visited[i] = false;
@@ -44,71 +48,71 @@ public class ShortestDist {
             //visitCount = 0;
             children = g.findChild(u);
             
-	    for (int i = 0; i < g.findDegree(u); i++) { 
-
-		if (visited[children[i]] == false) { 
-		    visited[children[i]] = true; 
-		    distances[children[i]] = distances[u] + 1;
-		    pre[children[i]] = u;
-		    L.add(children[i]); 
-
-
-		    // stopping condition
-	    for (j = 0; j<h.length; j++) {
-				if (children[i] == h[j]){ 
-					hosp[count] = distances[children[i]];
-					count++;
-					if(count == k) {
-						System.out.print("Distances are: ");
-						for(int z = 0; z < count; z++) {
-							System.out.print(hosp[z]+ " ");
-						}
-						System.out.println();
-						LinkedList<Integer> path = new LinkedList<Integer>();
-						for (int q=0; q<hosp.length; q++) {
-							int trace = hosp[q];
-							path.add(trace);
-							while (pre[trace] != -1) {
-								path.add(pre[trace]);
-								trace = pre[trace];
+		    for (int i = 0; i < g.findDegree(u); i++) { 
+	
+				if (visited[children[i]] == false) { 
+				    visited[children[i]] = true; 
+				    distances[children[i]] = distances[u] + 1;
+				    pre[children[i]] = u;
+				    L.add(children[i]); 
+	
+	
+			    // stopping condition
+			    for (j = 0; j<h.length; j++) {
+						if (children[i] == h[j]){ 
+							hosp[count] = distances[children[i]];
+							count++;
+							if(count == k) {
+								System.out.print("Distances are: ");
+								for(int z = 0; z < count; z++) {
+									System.out.print(hosp[z]+ " ");
+								}
+								System.out.println();
+								//LinkedList<Integer> path = new LinkedList<Integer>();
+								for (int q=0; q<count; q++) {
+									int trace = h[q];
+									path[q].add(trace);
+									while (pre[trace] != -1) {
+										path[q].add(pre[trace]);
+										trace = pre[trace];
+									}
+									System.out.print("Path: "); 
+							        for (int w = path[q].size() - 1; w >= 0; w--) { 
+							            System.out.print(path[q].get(w) + " "); 
+							        } 
+							        System.out.println();
+								}
+								return;
 							}
-							System.out.print("Path: "); 
-					        for (int w = path.size() - 1; w >= 0; w--) { 
-					            System.out.print(path.get(w) + " "); 
-					        } 
-					        System.out.println();
-						}
-						return;
+					    }
 					}
-			    }
-			}
-		}
-		//else visitCount++;
-	    } 
-	    //if(g.findDegree(u) > visitCount)
-	    //	dist++;
-        }
-		if(count == 0) {
-			System.out.println("No hospitals connected to source node");
-		}
-		else {
-			System.out.println("Only " + count + " hospitals were found");
-			System.out.println("Distances are: ");
+				}
+			//else visitCount++;
+		    } 
+		    //if(g.findDegree(u) > visitCount)
+		    //	dist++;
+	     }
+		 if(count == 0) {
+		 	System.out.println("No hospitals connected to source node");
+		 }
+		 else {
+		 	System.out.println("Only " + count + " hospitals were found");
+		 	System.out.println("Distances are: ");
 			for(int z = 0; z < count; z++) {
 				System.out.print(hosp[z]+ " ");
 			}
 			System.out.println();
-			LinkedList<Integer> path = new LinkedList<Integer>(); 
-			for (int q=0; q<hosp.length; q++) {
-				int trace = hosp[q];
-				path.add(trace);
+			//LinkedList<Integer> path = new LinkedList<Integer>(); 
+			for (int q=0; q<count; q++) {
+				int trace = h[q];
+				path[q].add(trace);
 				while (pre[trace] != -1) {
-					path.add(pre[trace]);
+					path[q].add(pre[trace]);
 					trace = pre[trace];
 				}
 				System.out.print("Path: "); 
-		        for (int i = path.size() - 1; i >= 0; i--) { 
-		            System.out.print(path.get(i) + " "); 
+		        for (int i = path[q].size() - 1; i >= 0; i--) { 
+		            System.out.print(path[q].get(i) + " "); 
 		        }
 		        System.out.println();
 			}
