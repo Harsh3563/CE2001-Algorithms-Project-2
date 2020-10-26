@@ -6,6 +6,12 @@ public class BFSApp {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		/**
+		 * @param k used in case 3 to find top-k hospitals from sourceNode
+		 * in case 1, k is set to 1
+		 * in case 2, k is set to 2
+		 * @param h array containing nodeIDs of nodes that are nodes, stated in the hospital file
+		 */
 		int choice, sourceNode, dist, k;
 		int[] h = null;
 		Graph g = null;
@@ -23,6 +29,7 @@ public class BFSApp {
 				System.out.println("File not found!");
 				System.exit(0);
 			}
+		
 		//Testing purposes to generate test graph
 		/*
 		g.addEdge(0, 1);
@@ -60,33 +67,33 @@ public class BFSApp {
 			System.out.print("Enter source node ID:");
 			sourceNode = sc.nextInt();
 			switch(choice) {
-			case 1:
+			case 1://Nearest hospital
 				try {
 					startTime = System.nanoTime();
 					ShortestDist.BFStopk(g, sourceNode, h, g.getSize(), 1);
-					System.out.println("Time taken: " + (System.nanoTime() - startTime) + "nanoseconds");
+					System.out.println("Time taken: " + (System.nanoTime() - startTime) + "nanoseconds"); //show time taken for code execution
 				}
 				catch(Exception e) {
 					System.out.println("An error has occurred");
 				}
 				break;
-			case 2:
+			case 2://Top 2 hospitals
 				try {
 					startTime = System.nanoTime();
 					ShortestDist.BFStopk(g, sourceNode, h, g.getSize(), 2);
-					System.out.println("Time taken: " + (System.nanoTime() - startTime) + "nanoseconds");
+					System.out.println("Time taken: " + (System.nanoTime() - startTime) + "nanoseconds");//show time taken for code execution
 				}
 				catch(Exception e) {
 					System.out.println("An error has occurred");
 				}
 				break;
-			case 3:
+			case 3://Top-k hospitals
 				System.out.println("Enter desired k value: ");
 				k = sc.nextInt();
 				try {
 					startTime = System.nanoTime();
 					ShortestDist.BFStopk(g, sourceNode, h, g.getSize(), k);
-					System.out.println("Time taken: " + (System.nanoTime() - startTime) + "nanoseconds");
+					System.out.println("Time taken: " + (System.nanoTime() - startTime) + "nanoseconds");//show time taken for code execution
 				}
 				catch(Exception e) {
 					System.out.println("An error has occurred");
