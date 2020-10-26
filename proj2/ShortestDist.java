@@ -7,14 +7,13 @@ public class ShortestDist {
 		LinkedList<Integer> L = new LinkedList<Integer>();
 		L.add(s);
 		boolean visited[] = new boolean[nodes];
-		//int dist = 0;
 		int u;
 		int[] children;
 		int j, count = 0;
-		//int visitCount;
 		int[] distances = new int[nodes];
 		int[] pre = new int[nodes];
 		int[] hosp = new int[k];
+		int[] foundh = new int[k];
 		for (j = 0; j<h.length; j++) {
         	if (s == h[j]) {
         		distances[count] = 0;
@@ -29,7 +28,7 @@ public class ShortestDist {
 				}
         	}
         }
-		//dist++;
+		
 		LinkedList<Integer> path[] = new LinkedList[k];
 		for (int o=0; o<k; o++) {
 			path[o] = new LinkedList();
@@ -37,7 +36,6 @@ public class ShortestDist {
 		
 		for (int i = 0; i < nodes; i++) {
 			visited[i] = false;
-			//distances[i] = Integer.MAX_VALUE;
 			pre[i] = -1;
 		}
 		
@@ -45,7 +43,6 @@ public class ShortestDist {
 		distances[s] = 0;
 		while (!L.isEmpty()) { 
             u = L.remove();
-            //visitCount = 0;
             children = g.findChild(u);
             
 		    for (int i = 0; i < g.findDegree(u); i++) { 
@@ -61,6 +58,7 @@ public class ShortestDist {
 			    for (j = 0; j<h.length; j++) {
 						if (children[i] == h[j]){ 
 							hosp[count] = distances[children[i]];
+							foundh[count] = children[i];
 							count++;
 							if(count == k) {
 								System.out.print("Distances are: ");
@@ -68,9 +66,9 @@ public class ShortestDist {
 									System.out.print(hosp[z]+ " ");
 								}
 								System.out.println();
-								//LinkedList<Integer> path = new LinkedList<Integer>();
+
 								for (int q=0; q<count; q++) {
-									int trace = h[q];
+									int trace = foundh[q];
 									path[q].add(trace);
 									while (pre[trace] != -1) {
 										path[q].add(pre[trace]);
@@ -87,10 +85,7 @@ public class ShortestDist {
 					    }
 					}
 				}
-			//else visitCount++;
 		    } 
-		    //if(g.findDegree(u) > visitCount)
-		    //	dist++;
 	     }
 		 if(count == 0) {
 		 	System.out.println("No hospitals connected to source node");
@@ -102,9 +97,9 @@ public class ShortestDist {
 				System.out.print(hosp[z]+ " ");
 			}
 			System.out.println();
-			//LinkedList<Integer> path = new LinkedList<Integer>(); 
+
 			for (int q=0; q<count; q++) {
-				int trace = h[q];
+				int trace = foundh[q];
 				path[q].add(trace);
 				while (pre[trace] != -1) {
 					path[q].add(pre[trace]);
