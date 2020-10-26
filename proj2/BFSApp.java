@@ -10,6 +10,7 @@ public class BFSApp {
 		int[] h = null;
 		Graph g = null;
 		boolean demo = true;
+		long startTime;
 		
 		//Graph g = new Graph(10);
 		
@@ -57,7 +58,9 @@ public class BFSApp {
 			switch(choice) {
 			case 1:
 				try {
+					startTime = System.nanoTime();
 					ShortestDist.BFStopk(g, sourceNode, h, g.getSize(), 1);
+					System.out.println("Time taken: " + (System.nanoTime() - startTime) + "nanoseconds");
 				}
 				catch(Exception e) {
 					System.out.println("An error has occurred");
@@ -65,7 +68,9 @@ public class BFSApp {
 				break;
 			case 2:
 				try {
-				ShortestDist.BFStopk(g, sourceNode, h, g.getSize(), 2);
+					startTime = System.nanoTime();
+					ShortestDist.BFStopk(g, sourceNode, h, g.getSize(), 2);
+					System.out.println("Time taken: " + (System.nanoTime() - startTime) + "nanoseconds");
 				}
 				catch(Exception e) {
 					System.out.println("An error has occurred");
@@ -75,7 +80,9 @@ public class BFSApp {
 				System.out.println("Enter desired k value: ");
 				k = sc.nextInt();
 				try {
-				ShortestDist.BFStopk(g, sourceNode, h, g.getSize(), k);
+					startTime = System.nanoTime();
+					ShortestDist.BFStopk(g, sourceNode, h, g.getSize(), k);
+					System.out.println("Time taken: " + (System.nanoTime() - startTime) + "nanoseconds");
 				}
 				catch(Exception e) {
 					System.out.println("An error has occurred");
