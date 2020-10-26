@@ -7,16 +7,16 @@ import java.io.FileWriter;
 
 public class ShortestDist {
 	public static void BFStopk(Graph g, int s, int[] h, int nodes, int k) throws IOException {
-		LinkedList<Integer> L = new LinkedList<Integer>();
+		LinkedList<Integer> L = new LinkedList<Integer>();	//linkedlist queue for nodes to visit
 		L.add(s);
-		boolean visited[] = new boolean[nodes];
+		boolean visited[] = new boolean[nodes];			//array of all nodes, true or false for visited
 		int u;
 		int[] children;
 		int j, count = 0;
-		int[] distances = new int[nodes];
-		int[] pre = new int[nodes];
-		int[] hosp = new int[k];
-		int[] foundh = new int[k];
+		int[] distances = new int[nodes];			//array keeping track of all distances of nodes from source
+		int[] pre = new int[nodes];				//array keeping track of parent node for each node
+		int[] hosp = new int[k];				//array of distances from connected h to source s
+		int[] foundh = new int[k];				//array of connected h to source s
 		
 		File myObj = new File("output.txt");
 		if (myObj.createNewFile()) {
@@ -46,7 +46,7 @@ public class ShortestDist {
         		}
         	}
 			
-			LinkedList<Integer> path[] = new LinkedList[k];
+			LinkedList<Integer> path[] = new LinkedList[k];		//path array: each element is path from one h to source s
 			for (int o=0; o<k; o++) {
 				path[o] = new LinkedList();
 			}
@@ -59,24 +59,24 @@ public class ShortestDist {
 			visited[s] = true;
 			distances[s] = 0;
 			while (!L.isEmpty()) { 
-	            u = L.remove();
+	            u = L.remove();					//remove node from queue to check children
 	            children = g.findChild(u);
 	            
 			    for (int i = 0; i < g.findDegree(u); i++) { 
 		
-					if (visited[children[i]] == false) { 
-					    visited[children[i]] = true; 
-					    distances[children[i]] = distances[u] + 1;
+					if (visited[children[i]] == false) { 				//check if child node is not yet visited, 
+					    visited[children[i]] = true; 				//then mark it as visited
+					    distances[children[i]] = distances[u] + 1;			//distance of children to source node is parent+1
 					    pre[children[i]] = u;
 					    L.add(children[i]); 
 		
-				    // stopping condition
+				    
 					    for (j = 0; j<h.length; j++) {
-							if (children[i] == h[j]){ 
+							if (children[i] == h[j]){ 				//check child match with element of h
 								hosp[count] = distances[children[i]];
 								foundh[count] = children[i];
 								count++;
-								if(count == k) {
+								if(count == k) {				//return condition if all hospitals are connected
 									System.out.print("Distances are: ");
 									myWriter.write("Distances are: \n");
 									for(int z = 0; z < count; z++) {
@@ -86,7 +86,7 @@ public class ShortestDist {
 									System.out.println();
 									myWriter.write("\n");
 	
-									for (int q=0; q<count; q++) {
+									for (int q=0; q<count; q++) {		//construct path from h to source s
 										int trace = foundh[q];
 										path[q].add(trace);
 										while (pre[trace] != -1) {
