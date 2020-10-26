@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 public class TxtFiletoList
 {
-   public static int[] Hospitals(String file) throws FileNotFoundException // Takes in the filename as method argument
-   {
+   public static int[] Hospitals(String file) throws FileNotFoundException 
+   { // Takes in the filename as method argument
        Scanner sc = new Scanner(new File(file));
        ArrayList<String> list = new ArrayList<String>(); 
        while (sc.hasNext()){ // while-loop to read in the values from the hospital file and store in the array list
