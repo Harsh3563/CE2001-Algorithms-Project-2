@@ -1,5 +1,7 @@
 package proj2;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.util.Scanner;
 
 public class BFSApp {
@@ -15,7 +17,7 @@ public class BFSApp {
 		int choice, sourceNode, dist, k;
 		int[] h = null;
 		Graph g = null;
-		boolean demo = true;
+		boolean demo = false;
 		long startTime;
 		
 		//For testing purposes
@@ -23,7 +25,7 @@ public class BFSApp {
 		
 		//Reading node file
 		try {
-			g = fileReader.readGraphFromFile("roadNet-PA.txt"); //Change Node file name here
+			g = fileReader.readGraphFromFile("Case2Nodes.txt"); //Change Node file name here
 			}
 		catch(Exception FileNotFoundException) {
 				System.out.println("File not found!");
@@ -54,8 +56,22 @@ public class BFSApp {
 		
 		
 		Scanner sc = new Scanner(System.in);
-		
-		
+		//creating output file
+		try {
+		File myObj = new File("output.txt");
+		if (myObj.createNewFile()) {
+			System.out.println("File created: " + myObj.getName());
+		} 
+		else {
+			System.out.println("File already exists.");
+		}
+		}
+		catch (Exception e) {
+			System.out.println("Error creating file");
+			System.exit(0);
+		}
+		try {
+			FileWriter myWriter = new FileWriter("output.txt");
 		do {
 			System.out.println("Select which algorithm to find:\n"
 					+ "[1] Nearest Hospital\n"
@@ -64,14 +80,18 @@ public class BFSApp {
 					+ "[4] Quit");
 			choice = sc.nextInt();
 			if(choice == 4) break;
-			System.out.print("Enter source node ID:");
-			sourceNode = sc.nextInt();
+			//System.out.print("Enter source node ID:");
+			//sourceNode = sc.nextInt();
 			switch(choice) {
 			case 1://Nearest hospital
 				try {
 					startTime = System.nanoTime();
-					ShortestDist.BFStopk(g, sourceNode, h, g.getSize(), 1);
-					System.out.println("Time taken: " + (System.nanoTime() - startTime) + "nanoseconds"); //show time taken for code execution
+					for(sourceNode = 0; sourceNode < g.getSize(); sourceNode++) {
+						System.out.println("For node " + sourceNode);
+						myWriter.write("For node " + sourceNode + "\n");
+						ShortestDist.BFStopk(g, sourceNode, h, g.getSize(), 1, myWriter);
+					}
+					System.out.println("Time taken: " + (System.nanoTime() - startTime) + " nanoseconds"); //show time taken for code execution
 				}
 				catch(Exception e) {
 					System.out.println("An error has occurred");
@@ -80,8 +100,12 @@ public class BFSApp {
 			case 2://Top 2 hospitals
 				try {
 					startTime = System.nanoTime();
-					ShortestDist.BFStopk(g, sourceNode, h, g.getSize(), 2);
-					System.out.println("Time taken: " + (System.nanoTime() - startTime) + "nanoseconds");//show time taken for code execution
+					for(sourceNode = 0; sourceNode < g.getSize(); sourceNode++) {
+						System.out.println("For node " + sourceNode);
+						myWriter.write("For node " + sourceNode + "\n");
+					ShortestDist.BFStopk(g, sourceNode, h, g.getSize(), 2, myWriter);
+					}
+					System.out.println("Time taken: " + (System.nanoTime() - startTime) + " nanoseconds");//show time taken for code execution
 				}
 				catch(Exception e) {
 					System.out.println("An error has occurred");
@@ -92,8 +116,12 @@ public class BFSApp {
 				k = sc.nextInt();
 				try {
 					startTime = System.nanoTime();
-					ShortestDist.BFStopk(g, sourceNode, h, g.getSize(), k);
-					System.out.println("Time taken: " + (System.nanoTime() - startTime) + "nanoseconds");//show time taken for code execution
+					for(sourceNode = 0; sourceNode < g.getSize(); sourceNode++) {
+						System.out.println("For node " + sourceNode);
+						myWriter.write("For node " + sourceNode + "\n");
+					ShortestDist.BFStopk(g, sourceNode, h, g.getSize(), k, myWriter);
+					}
+					System.out.println("Time taken: " + (System.nanoTime() - startTime) + " nanoseconds");//show time taken for code execution
 				}
 				catch(Exception e) {
 					System.out.println("An error has occurred");
@@ -105,6 +133,11 @@ public class BFSApp {
 			}
 		}while(demo);
 		System.out.println("Program completed!");
+		myWriter.close();
+		}
+		catch(Exception e) {
+			System.out.println("An error has occurred in the main program");
+		}
 		sc.close();
 	}
 
